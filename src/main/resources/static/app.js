@@ -15,6 +15,10 @@ var app = (function () {
         ctx.beginPath();
         ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
         ctx.stroke();
+        //creando un objeto literal
+        stompClient.send("/topic/newpoint", {}, JSON.stringify({x:10,y:10}));
+        //enviando un objeto creado a partir de una clase
+        //stompClient.send("/topic/newpoint", {}, JSON.stringify(pt)); 
     };
     
     
@@ -32,12 +36,12 @@ var app = (function () {
         console.info('Connecting to WS...');
         var socket = new SockJS('/stompendpoint');
         stompClient = Stomp.over(socket);
-        
         //subscribe to /topic/TOPICXX when connections succeed
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/TOPICXX', function (eventbody) {
-                
+            stompClient.subscribe('/topic/newpoint', function (eventbody) {
+                var theObject=JSON.parse(eventbody.body);
+                alert("el nuevo punto es "+theObject.x+" en x "+theObject.y+" en y");
                 
             });
         });
@@ -61,6 +65,7 @@ var app = (function () {
             addPointToCanvas(pt);
 
             //publicar el evento
+            stompClient.send("/topic/newpoint", {}, JSON.stringify(pt)); 
         },
 
         disconnect: function () {
