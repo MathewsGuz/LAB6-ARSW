@@ -16,7 +16,6 @@ var app = (function () {
         ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
         ctx.stroke();
         //creando un objeto literal
-        stompClient.send("/topic/newpoint", {}, JSON.stringify({x:10,y:10}));
         //enviando un objeto creado a partir de una clase
         //stompClient.send("/topic/newpoint", {}, JSON.stringify(pt)); 
     };
