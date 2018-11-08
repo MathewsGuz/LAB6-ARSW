@@ -46,7 +46,7 @@ var app = (function () {
             });
              stompClient.subscribe('/topic/newpolygon.'+identifier, function (eventbody){
                 var polygono = JSON.parse(eventbody.body);
-                addPolygonToCanvas(polygono);
+                addPolygonToCanvas(polygono);//aun no se crea la funcion
             });
         });
 
