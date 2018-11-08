@@ -4,7 +4,7 @@
 
 
 - Julian Guzman Diaz
-- [LinkHeroku] (https://lab6arsw20182.herokuapp.com/)
+- [LinkHeroku](https://lab6arsw20182.herokuapp.com/).
 - Conectarse con un botón
 - publicar con eventos de mouse
 
