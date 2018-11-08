@@ -5,6 +5,13 @@
  */
 package edu.eci.arsw.collabpaint.controller;
 
+import edu.eci.arsw.collabpaint.model.Point;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
+
 /**
  *
  * @author Guzman
