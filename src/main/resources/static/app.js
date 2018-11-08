@@ -44,6 +44,10 @@ var app = (function () {
                 //alert("el nuevo punto es "+theObject.x+" en x "+theObject.y+" en y");
                 
             });
+             stompClient.subscribe('/topic/newpolygon.'+identifier, function (eventbody){
+                var polygono = JSON.parse(eventbody.body);
+                addPolygonToCanvas(polygono);
+            });
         });
 
     };
@@ -69,7 +73,7 @@ var app = (function () {
             addPointToCanvas(pt);
 
             //publicar el evento
-            stompClient.send("/topic/newpoint", {}, JSON.stringify(pt)); 
+            stompClient.send("/app/newpoint", {}, JSON.stringify(pt)); 
         },
 
         disconnect: function () {
